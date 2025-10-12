@@ -49,9 +49,62 @@
             <article>
                 <h2>Classificação dos Protocolos de Rotemaneto</h2>
                     <h3>Protocolos Baseados em Topologia</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt magni nostrum a accusamus debitis! Corporis aspernatur necessitatibus fugit harum mollitia deserunt enim expedita, at autem, aliquam perspiciatis ipsam aut error?</p>
+                        <p>Os protocolos baseados em topologia tomam decisões de roteamento com base na conectividade entre os nós da rede, eles usam mensagens de controle para descoberta e 
+                            manutenção das rotas. Esse tipo de protocolo enfrenta diversos desafios nas VANETs por conta do seu alto overhead para manter uma visão precisa da topologia que 
+                            muda constantemente/rapidamente.</p>
+                        <h4>Protocolos proativos (table-driven)</h4>
+                            <p> Os <b>protocolos proativos (table-driven)</b> tentam manter rotas atualizadas para todos os destinos a todo momento. Assim, cada nó da rede tem uma ou mais tabelas 
+                                de roteamento e as propaga periodicamente para atualizações ou quando ocorre mudanças na topologia. Os Table-Driven tem como sua principal vantagem a latência 
+                                mínima no envio de dados já que a rota para qualquer destino é imediatamente disponível. No entanto, há consequências que acabam limitando o uso desse protocolo 
+                                para qualquer cenário, como o alto overhead, em redes muito grandes e dinâmicas, criado por conta desse “conhecimento global”. </p>
+                            <h5>DSDV (Destination-Sequenced Distance-Vector)</h5>
+                                <p>O <b>DSDV (Destination-Sequenced Distance-Vector)</b> é uma adaptação do algoritmo de vetor de distância Bellman-ford. A sua diferença é a introdução dos números de 
+                                    sequência gerados pelo destino para cada entrada de tabela de roteamento, essa estratégia permite que os relays possam diferenciar rotas mais “novas” das mais 
+                                    “antigas”, de modo que possam evitar os loops de roteamento. </p>
+                            <h5>OLSR (Optimized Link State Routing Protocol)</h5>
+                                <p>O <b>OLSR (Optimized Link State Routing Protocol)</b> é um protocolo otimizado dos estados de enlace (Link State) com o uso dos <b>MPRs (Multi-Points Relays)</b> para reduzir 
+                                    os overheads. Nessa técnica, cada nó vai escolher um conjunto de vizinhos para serem MPRs e a função dos MPRs é reencaminhar as mensagens de controle, reduzindo 
+                                    o número de retransmissões redundantes no flooding. Esse tipo de protocolo é mais eficiente para redes mais densas, mas ainda há o empecilho do alto overhead por 
+                                    conta da topologia.</p>
+                
+                        <h4>Protocolos Reativos</h4>
+                            <p>Visando a redução do overhead de controle em redes, opta-se pela abordagem reativa em que esse protocolo cria rotas apenas quando são necessários. 
+                                Quando um nó fonte precisa de rota para um destino, o qual não existe rota ainda, inicia-se um processo de “descoberta” da rota através da inundação de mensagens de requisição. 
+                                Em contrapartida, há o aumento da latência por conta do processo de descoberta da rota.</p>
+                            <h5>AODV (Ad-hoc On-demand Distance Vector)</h5>
+                                <p>O <b>AODV (Ad-hoc On-demand Distance Vector)</b> é um protocolo de abordagem reativa que utiliza uma técnica de requisição/resposta para a descoberta dos caminhos. 
+                                    O nó fonte envia/transmite um pacote <b>RREQ (Requisição de Rota)</b> e os nós que serão intermediários da rota recebem-o estabelecendo um caminho para a fonte e 
+                                    retransmitindo o RREQ até que chegue ao relay de destino. Assim que o relay de destino recebe esse pacote ele envia um <b>RREP (Resposta de Rota)</b> pelo caminho 
+                                    reverso que foi sendo estabelecido. Esse processo de inundação para a determinação da rota pode levar ao “Broadcast storm problem” e causar problemas de 
+                                    congestionamento na rede, apesar de ser melhor no quesito overhead. O AODV, também, usa o mecanismo de número de sequência do DSDV para mitigar os loops de 
+                                    roteamento. </p>
+                            <h5>DSR (Dynamic Source Routing)</h5>
+                                <p>O <b>DSR (Dynamic Source Routing)</b> elimina a necessidade de nós intermediários manterem tabelas de roteamento atualizadas para o envio dos pacotes, uma vez que o 
+                                    DSR usa o mecanismo de Source Routing, em que na descoberta da rota acumula-se no cabeço do RREQ a sequência dos relays passados. O RREP, por sua vez, retorna 
+                                    a rota completa para a fonte, o qual vai colocar no cabeçalho de cada pacote de dados. Por outro lado, há um limite para a eficiência deste protocolo, uma vez que 
+                                    à medida que aumenta o comprimento do caminho, aumenta-se diretamente o tamanho do cabeçalho.</p>
+                
                     <h3>Protocolos Baseados na posição Geográfica</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed magni, dolor beatae dolorum incidunt vel excepturi nobis illum et ex odio doloribus nulla quo totam, quisquam ullam. Animi, asperiores iure?</p>
+                        <p>Os protocolos baseados na posição geográfica são mais adequados para ambientes dinâmicos da ad hoc veiculares, eles usam a posição física (GPS) dos relays para tomar as 
+                            decisões de encaminhamento dos pacotes. Esses tipos de protocolos têm a sua principal vantagem na escalabilidade, uma vez que os relays precisam conhecer apenas os seus 
+                            vizinhos (Stateless) tornando eles mais robustos a mudanças topológicas rápidas. </p>
+                        <p>Alguns conceitos centrais por trás desses protocolos são o <b>Greedy Forwarding (Encaminhamento Guloso)</b> e <b>Problema de máximo local</b>:</p>
+                        <p>O encaminhamento guloso é a estratégia, onde o nó que está com o pacote e deve encaminhá-lo para o próximo relay de sua escolha, essa escolha é determinada através da menor 
+                            distância geográfica para o destino final. Isso é repetido a cada salto feito.</p>
+                        <p>O problema de máximo local ou vazio de comunicação é uma das situações em que é necessária uma <b>estratégia de recuperação</b>, mas como eles ocorrem? Essa situação acontece quando 
+                            o encaminhamento guloso falha, ou seja, quando ele não encontra um nó vizinho que o aproxima do destino, na verdade todos os seus vizinhos o afastam do destino sendo ele o nó, 
+                            o qual tem a menor distância para o destino. Nesse sentido, foi implementada estratégias de recuperação para essas situações sendo o encaminhamento de perímetro o mais conhecido. 
+                            Esse método irá contornar essa borda do vazio de comunicação até que consiga encontrar um nó que seja mais próximo do destino do que o ponto em o problema do máximo local se iniciou.</p>
+                        <h4>GPSR (Greedy Perimeter Stateless Routing)</h4>
+                            <p>O <b>GPSR (Greedy Perimeter Stateless Routing)</b> é um protocolo que formaliza a combinação dos conceitos de encaminhamento guloso e encaminhamento de perímetro. 
+                                Cada nó neste protocolo tem uma tabela de vizinhos com as suas informações de distância/posição que é atualizada periódicamente por mensagens de beacons. 
+                                O melhor ambiente para o funcionamento do protocolo é em terrenos abertos, como autoestradas/rodovias.</p>
+                        <h4>GSR (Geographic Source Routing)</h4>
+                            <p>O <b>GSR (Geographic Source Routing)</b> foi desenvolvido justamente para melhorar as partes em que o GPSR era limitado (cenários urbanos/densidade alta). 
+                                A diferença entre os dois protocolos é que o GSR utiliza de conhecimentos da topologia do ambiente (mapas digitais) para calcular a sequência de junções 
+                                que formam o caminho mais curto até o destino, sequência essa que é inserida no cabeçalho do pacote, o pacote, então, é encaminhado de junção em junção 
+                                usa o encaminhamento guloso para atravessar os segmento de ruas entre eles. Apesar dessa abordagem depender de mapas digitais, ela evita o problema de máximo 
+                                local que ocorre no GPSR.</p>
             </article>
             <artcle>
                 <h2>Aplicações</h2>
