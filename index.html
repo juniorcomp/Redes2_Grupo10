@@ -59,6 +59,23 @@
                         <p>Este trabalho tem como objetivo explorar os principais protocolos de roteamento utilizados em redes veiculares, analisando suas características, funcionamento, e aplicabilidade em diferentes cenários. Serão discutidos protocolos baseados em tabela, protocolos baseados em demanda, e protocolos híbridos, além de uma comparação entre eles para identificar qual é o mais adequado para diferentes situações.</p>
                     <h3>Componentes principais das VANETs</h3>
                         <p>As redes veiculares (VANETs) são compostas por vários componentes principais que trabalham juntos para garantir a comunicação eficiente entre veículos e a infraestrutura de rede. Os principais componentes das VANETs incluem:</p>
+                        <ul>
+                            <li>
+                                <strong><u>OBUs (On-Board Units)</u>:</strong> São dispositivos instalados nos veículos que permitem a comunicação com outros veículos e com a infraestrutura de rede. As OBUs são responsáveis por enviar e receber mensagens, processar informações, e executar protocolos de roteamento.
+                            </li>
+                            <li>
+                                <strong><u>RSUs (Roadside Units)</u>:</strong> São dispositivos fixos instalados ao longo das estradas que facilitam a comunicação entre veículos e a infraestrutura de rede. As RSUs podem atuar como pontos de acesso à internet, fornecer informações sobre condições de tráfego, e ajudar na coordenação entre veículos.
+                            </li>
+                            <li>
+                                <strong><u>Veículos</u>:</strong> Os veículos são os nós móveis da rede, equipados com OBUs que permitem a comunicação entre si e com as RSUs. A alta mobilidade dos veículos é um dos principais desafios das VANETs, exigindo protocolos de roteamento adaptáveis e eficientes.
+                            </li>
+                            <li>
+                                <strong><u>Mecanismos de Comunicação</u>:</strong> Incluem tanto a comunicação Vehicle-to-Vehicle (V2V), que é a troca direta de dados entre veículos, quanto a comunicação Vehicle-to-Infrastructure (V2I), que envolve a interação entre veículos e RSUs. Existem diferentes tecnologias de comunicação para esse intuito, como Wi-Fi (IEEE 802.11p), LTE, e 5G, para garantir a troca de informações entre veículos e a infraestrutura de rede. A escolha da tecnologia de comunicação pode afetar a latência, largura de banda, e alcance da rede.
+                            </li>
+                            <li>
+                                <strong><u>Protocolos de Roteamento</u>:</strong> Os protocolos de roteamento são responsáveis por determinar o caminho que as mensagens devem seguir para alcançar seu destino. Diferentes protocolos foram desenvolvidos para atender às necessidades específicas das VANETs, cada um com suas próprias vantagens e desvantagens.
+                            </li>
+                        </ul>
             </article>
             <article id="fundamento">
                 <h2>Fundamento de Roteamento</h2>
@@ -66,14 +83,14 @@
                         <p>Roteamento é o processo de selecionar caminhos em uma rede para enviar pacotes de dados de um nó de origem para um nó de destino. Em redes veiculares (VANETs), o roteamento é especialmente desafiador devido à alta mobilidade dos veículos, mudanças frequentes na topologia da rede e a necessidade de comunicação em tempo real.</p>
                         <p>O objetivo do roteamento em VANETs é garantir que os dados sejam entregues de forma eficiente, confiável e com baixa latência, mesmo em condições dinâmicas e imprevisíveis. Para alcançar esse objetivo, diversos protocolos de roteamento foram desenvolvidos, cada um com suas próprias estratégias e mecanismos para lidar com os desafios específicos das redes veiculares.</p>
                     <h3>Diferença em relação a Redes Móveis Ad-Hoc(MANETs)</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta at ad explicabo sapiente cumque. Perferendis quibusdam quae esse, consectetur enim, praesentium repudiandae consequatur aut amet, illum ipsam quos rem quaerat?</p>
+                        <p>Redes Móveis Ad-hoc (MANETs) são uma coleção de nós que são móveis e não usam infraestruturas fixas. Os nós em MANETs devem se conectar entre si de uma forma descentralizada e organizada. Quando os nós móveis são substituídos por veículos, então a MANET torna-se uma VANET. Outra diferença fundamental é a velocidade de movimentação dos nós nas VANETs, isso causa uma rápida e frequente mudança na topologia da rede, algo incomum em MANETs.</p>
             </article>
             <article id="classif">
                  <h2>Classificação dos Protocolos de Rotemaneto</h2>
                     <h3>Protocolos Baseados em Topologia</h3>
                         <p>Os protocolos baseados em topologia tomam decisões de roteamento com base na conectividade entre os nós da rede, eles usam mensagens de controle para descoberta e 
                             manutenção das rotas. Esse tipo de protocolo enfrenta diversos desafios nas VANETs por conta do seu alto overhead para manter uma visão precisa da topologia que 
-                            muda constantemente/rapidamente.</p>
+                            muda constantemente e rapidamente.</p>
                         <h4>Protocolos proativos (table-driven)</h4>
                             <p> Os <b>protocolos proativos (table-driven)</b> tentam manter rotas atualizadas para todos os destinos a todo momento. Assim, cada nó da rede tem uma ou mais tabelas 
                                 de roteamento e as propaga periodicamente para atualizações ou quando ocorre mudanças na topologia. Os Table-Driven tem como sua principal vantagem a latência 
