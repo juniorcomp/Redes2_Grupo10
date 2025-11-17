@@ -1,32 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap');
+
 html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-body{
+body {
     font-family: 'Roboto', 'Helvetica Neue', sans-serif;
-    line-height: 1.6;
+    font-weight: 300; 
+    line-height: 1.7;
     background-color: #0038b1;
     color: white;
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-family: 'Open Sans', 'Lato', sans-serif;
+    font-size: 1.9rem;
     font-weight: 700;
-    color: rgb(255, 255, 255); 
+    color: rgb(125, 255, 184);
     margin-top: 0;
-    margin-bottom: 20px;
-    border-left: 4px; 
+    margin-bottom: 25px;
+    border-left: 4px solid rgb(125, 255, 184); 
     padding-left: 15px;
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
 h3 {
-    font-size: 1.3rem;
+    font-family: 'Open Sans', 'Lato', sans-serif;
+    font-size: 1.4rem;
     font-weight: 600; 
     color: #fff; 
-    margin-top: 25px;
+    margin-top: 30px;
     margin-bottom: 15px;
 }
 
@@ -34,6 +40,7 @@ p {
     text-align: justify; 
     font-size: 1rem;
     margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.9); 
 }
 
 .navbar ul.nav-list {
@@ -54,9 +61,10 @@ p {
 .navbar ul.nav-list li a {
     font-family: 'Open Sans', 'Lato', sans-serif;
     text-decoration: none;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.85);
     font-size: 1rem;
-    padding: 10px 5px; 
+    font-weight: 600;
+    padding: 10px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
     position: relative;
@@ -66,6 +74,7 @@ p {
 
 .navbar ul.nav-list li a:hover {
     color: rgb(125, 255, 184);
+    background-color: rgba(125, 255, 184, 0.1);
 }
 
 .navbar ul.nav-list li a::after {
@@ -83,7 +92,6 @@ p {
 .navbar ul.nav-list li a:hover::after {
     width: 80%;
 }
-
 
 .toggle-input {
     display: none;
@@ -235,13 +243,27 @@ section {
 
 article {
     margin-bottom: 30px; 
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 25px;
+    border-bottom: none;
+    background-color: rgba(0, 28, 85, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+    transform: translateY(-5px); /* Eleva o card */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .biblio li a{
     color: rgb(125, 255, 184);
     text-decoration: none;
+    font-weight: 600;
+}
+
+.biblio li a:hover {
+    text-decoration: underline;
 }
 
 .perguntas ul {
@@ -249,48 +271,43 @@ article {
     padding-left: 0;
     display: flex;
     flex-direction: row;
-    gap:2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
 .perguntas ul li {
-    background-color: #f0f0f0; 
-    color: #333; 
-    
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd; 
-    border-radius: 5px; 
-    
-    font-size: 1rem;
-    cursor: default;
-    display: block; 
-}
-
-.footer {
-    width: 100%;
-    padding: 15px 0;
-}
-
-.footer-content {
-    max-width: 100%; 
-    margin: 0 auto;
-    text-align: center;
-    font-size: 0.9em;
     background-color: rgb(125, 255, 184);
     color: #0038b1;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: default;
+    display: block; 
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.perguntas ul li:hover {
+    background-color: #fff;
+    color: #0038b1;
+    transform: scale(1.03); 
+}
 
+.info-curso {
+    margin-top: 30px; 
+}
 
-
-
-
-
-
-
-/* Versões Mobile - Media */
-
+.info-curso p {
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    margin: 6px 0; 
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+}
 
 @media (max-width: 768px) {
     .menu {
@@ -306,5 +323,11 @@ article {
 
     .menu > div:last-child ul {
         display: inline-block;
+    }
+
+    /* Ajuste para as perguntas no mobile */
+    .perguntas ul {
+        gap: 1rem;
+        justify-content: center;
     }
 }
