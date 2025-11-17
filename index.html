@@ -39,6 +39,13 @@
                                 </ul>
                             </div>
                         </div>
+                    
+                        <div class="info-curso">
+                            <p>2025.1</p>
+                            <p>Engenharia de Computação e Informação - UFRJ</p>
+                            <p>Professor Luis Henrique</p>
+                            <p>Disciplina: Redes de Computadores II</p>
+                        </div>
                     </div>
                     <div>
                         <ul>
@@ -97,11 +104,11 @@
                                 mínima no envio de dados já que a rota para qualquer destino é imediatamente disponível. No entanto, há consequências que acabam limitando o uso desse protocolo 
                                 para qualquer cenário, como o alto overhead, em redes muito grandes e dinâmicas, criado por conta desse “conhecimento global”. </p>
                             <h5>DSDV (Destination-Sequenced Distance-Vector)</h5>
-                                <p>O <b>DSDV (Destination-Sequenced Distance-Vector)</b> é uma adaptação do algoritmo de vetor de distância Bellman-ford. A sua diferença é a introdução dos números de 
+                                <p>O <b>DSDV</b> é uma adaptação do algoritmo de vetor de distância Bellman-ford. A sua diferença é a introdução dos números de 
                                     sequência gerados pelo destino para cada entrada de tabela de roteamento, essa estratégia permite que os relays possam diferenciar rotas mais “novas” das mais 
                                     “antigas”, de modo que possam evitar os loops de roteamento. </p>
                             <h5>OLSR (Optimized Link State Routing Protocol)</h5>
-                                <p>O <b>OLSR (Optimized Link State Routing Protocol)</b> é um protocolo otimizado dos estados de enlace (Link State) com o uso dos <b>MPRs (Multi-Points Relays)</b> para reduzir 
+                                <p>O <b>OLSR</b> é um protocolo otimizado dos estados de enlace (Link State) com o uso dos <b>MPRs (Multi-Points Relays)</b> para reduzir 
                                     os overheads. Nessa técnica, cada nó vai escolher um conjunto de vizinhos para serem MPRs e a função dos MPRs é reencaminhar as mensagens de controle, reduzindo 
                                     o número de retransmissões redundantes no flooding. Esse tipo de protocolo é mais eficiente para redes mais densas, mas ainda há o empecilho do alto overhead por 
                                     conta da topologia.</p>
@@ -111,14 +118,14 @@
                                 Quando um nó fonte precisa de rota para um destino, o qual não existe rota ainda, inicia-se um processo de “descoberta” da rota através da inundação de mensagens de requisição. 
                                 Em contrapartida, há o aumento da latência por conta do processo de descoberta da rota.</p>
                             <h5>AODV (Ad-hoc On-demand Distance Vector)</h5>
-                                <p>O <b>AODV (Ad-hoc On-demand Distance Vector)</b> é um protocolo de abordagem reativa que utiliza uma técnica de requisição/resposta para a descoberta dos caminhos. 
+                                <p>O <b>AODV</b> é um protocolo de abordagem reativa que utiliza uma técnica de requisição/resposta para a descoberta dos caminhos. 
                                     O nó fonte envia/transmite um pacote <b>RREQ (Requisição de Rota)</b> e os nós que serão intermediários da rota recebem-o estabelecendo um caminho para a fonte e 
                                     retransmitindo o RREQ até que chegue ao relay de destino. Assim que o relay de destino recebe esse pacote ele envia um <b>RREP (Resposta de Rota)</b> pelo caminho 
                                     reverso que foi sendo estabelecido. Esse processo de inundação para a determinação da rota pode levar ao “Broadcast storm problem” e causar problemas de 
                                     congestionamento na rede, apesar de ser melhor no quesito overhead. O AODV, também, usa o mecanismo de número de sequência do DSDV para mitigar os loops de 
                                     roteamento. </p>
                             <h5>DSR (Dynamic Source Routing)</h5>
-                                <p>O <b>DSR (Dynamic Source Routing)</b> elimina a necessidade de nós intermediários manterem tabelas de roteamento atualizadas para o envio dos pacotes, uma vez que o 
+                                <p>O <b>DSR</b> elimina a necessidade de nós intermediários manterem tabelas de roteamento atualizadas para o envio dos pacotes, uma vez que o 
                                     DSR usa o mecanismo de Source Routing, em que na descoberta da rota acumula-se no cabeço do RREQ a sequência dos relays passados. O RREP, por sua vez, retorna 
                                     a rota completa para a fonte, o qual vai colocar no cabeçalho de cada pacote de dados. Por outro lado, há um limite para a eficiência deste protocolo, uma vez que 
                                     à medida que aumenta o comprimento do caminho, aumenta-se diretamente o tamanho do cabeçalho.</p>
@@ -135,15 +142,17 @@
                             o qual tem a menor distância para o destino. Nesse sentido, foi implementada estratégias de recuperação para essas situações sendo o encaminhamento de perímetro o mais conhecido. 
                             Esse método irá contornar essa borda do vazio de comunicação até que consiga encontrar um nó que seja mais próximo do destino do que o ponto em o problema do máximo local se iniciou.</p>
                         <h4>GPSR (Greedy Perimeter Stateless Routing)</h4>
-                            <p>O <b>GPSR (Greedy Perimeter Stateless Routing)</b> é um protocolo que formaliza a combinação dos conceitos de encaminhamento guloso e encaminhamento de perímetro. 
+                            <p>O <b>GPSR</b> é um protocolo que formaliza a combinação dos conceitos de encaminhamento guloso e encaminhamento de perímetro. 
                                 Cada nó neste protocolo tem uma tabela de vizinhos com as suas informações de distância/posição que é atualizada periódicamente por mensagens de beacons. 
                                 O melhor ambiente para o funcionamento do protocolo é em terrenos abertos, como autoestradas/rodovias.</p>
                         <h4>GSR (Geographic Source Routing)</h4>
-                            <p>O <b>GSR (Geographic Source Routing)</b> foi desenvolvido justamente para melhorar as partes em que o GPSR era limitado (cenários urbanos/densidade alta). 
+                            <p>O <b>GSR</b> foi desenvolvido justamente para melhorar as partes em que o GPSR era limitado (cenários urbanos/densidade alta). 
                                 A diferença entre os dois protocolos é que o GSR utiliza de conhecimentos da topologia do ambiente (mapas digitais) para calcular a sequência de junções 
                                 que formam o caminho mais curto até o destino, sequência essa que é inserida no cabeçalho do pacote, o pacote, então, é encaminhado de junção em junção 
                                 usa o encaminhamento guloso para atravessar os segmento de ruas entre eles. Apesar dessa abordagem depender de mapas digitais, ela evita o problema de máximo 
                                 local que ocorre no GPSR.</p>
+                        <h4>A-STAR (Anchor-based Street and Traffic Aware Routing)</h4>
+                            <p> O protocolo <b>A-STAR</b> adota uma abordagem de roteamento baseada em âncoras, utilizando especificamente informações das rotas de ônibus urbanos. Ele associa uma pontuação a cada rua com base em sua capacidade, que é definida pelo número de linhas de ônibus passam por ela. Ruas com alto fluxo de ônibus são utilizadas como "âncoras" para o roteamento de pacotes. Além disso, os dados coletados pelos ônibus fornecem uma imagem da carga da rede veicular em diferentes ruas ao longo do tempo.</p>
             </article>
             <artcle id="aplic">
                 <h2>Aplicações</h2>
@@ -201,16 +210,11 @@
                 <li>
                     <p>BENGAG Amina, BENGAG Asmae , EKBOUKHARI Mohamed. Routing Protocols for VANETs: A Taxonomy, Evaluation and Analysis In: <cite>ASTESJ</cite>, sep, 2019. Disponível em: <a href="https://www.astesj.com/publications/ASTESJ_050110.pdf">www.astesj.com</a></p>
                 </li>
+                <li>
+                    <p>HARRABI Samira, JAFFAR Ines, GHEDIRA Khaled. VANETs Networking Protocols: An Analytical Study In: <cite>SENSORCOMM 2016</cite>. Disponível em: <a href = "https://personales.upv.es/thinkmind/dl/conferences/sensorcomm/sensorcomm_2016/sensorcomm_2016_1_10_10028.pdf">SENSORCOMM</a></p>
+                </li>
             </ol>
         </section>
-        <footer>
-            <div class="footer-content">
-                <p>2025.1</p>
-                <p>Engenharia de Computação e Informação - UFRJ</p>
-                <p>Professor Luis Henrique</p>
-                <p>Disciplina: Redes de Computadores II</p>
-            </div>
-        </footer>
     </main>
 </body>
 </html>
