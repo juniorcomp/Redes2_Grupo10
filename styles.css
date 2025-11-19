@@ -290,12 +290,6 @@ article:hover {
     margin-bottom: 5px;
 }
 
-.perguntas ul li:hover {
-    background-color: #fff;
-    color: #0038b1;
-    transform: scale(1.03); 
-}
-
 .info-curso {
     margin-top: 30px; 
 }
