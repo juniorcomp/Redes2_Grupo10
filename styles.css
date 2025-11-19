@@ -252,7 +252,7 @@ article {
 }
 
 article:hover {
-    transform: translateY(-5px); /* Eleva o card */
+    transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -292,7 +292,7 @@ article:hover {
 
 .perguntas ul li:hover {
     background-color: transparent !important;
-    color: inherit; /* Mantém a cor original do texto */
+    color: inherit;
 }
 
 .info-curso {
@@ -309,6 +309,7 @@ article:hover {
 }
 
 @media (max-width: 768px) {
+    
     .menu {
         flex-direction: column;
         justify-content: center;
@@ -324,9 +325,25 @@ article:hover {
         display: inline-block;
     }
 
-    /* Ajuste para as perguntas no mobile */
     .perguntas ul {
         gap: 1rem;
         justify-content: center;
+    }
+
+    .navbar ul.nav-list {
+        flex-direction: column;
+        margin: 20px 0;
+    }
+
+    .navbar ul.nav-list li {
+        width: 100%;
+        margin-bottom: 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar ul.nav-list li a {
+        display: block;
+        padding: 15px;
+        word-break: normal;
     }
 }
